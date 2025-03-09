@@ -22,7 +22,6 @@ Route::delete('pokemon/delate/{id}', [pokemonController::class, 'destroy']);
  * Routers para generar CRUD en Type
  */
 Route::get('type/index', [typeController::class, 'index']);
-Route::get('type/search/{id}', [typeController::class, 'search']);
 Route::post('type/save', [typeController::class, 'save']);
 Route::patch('type/update/{id}', [typeController::class, 'update']);
 Route::delete('type/delate/{id}', [typeController::class, 'destroy']);
@@ -30,7 +29,6 @@ Route::delete('type/delate/{id}', [typeController::class, 'destroy']);
  * Routers para generar CRUD en Ability
  */
 Route::get('abilitie/index', [abilitiesController::class, 'index']);
-Route::get('abilitie/search/{id}', [abilitiesController::class, 'search']);
 Route::post('abilitie/save', [abilitiesController::class, 'save']);
 Route::patch('abilitie/update/{id}', [abilitiesController::class, 'update']);
 Route::delete('abilitie/delate/{id}', [abilitiesController::class, 'destroy']);

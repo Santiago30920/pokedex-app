@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Type;
+use Exception;
 
-class typeControllar extends Controller
+class typeController extends Controller
 {
      /**
      * Display a listing of the resource.
@@ -33,7 +34,8 @@ class typeControllar extends Controller
             return response()->json([
                 "status"=> 200,
                 "message"=> "Type the pokemon created successfully",
-                "code" => 1
+                "code" => 1,
+                "data"=> $types
             ], 200);
         }catch(Exception $e){
             return response()->json([
@@ -91,25 +93,6 @@ class typeControllar extends Controller
                 "message"=> "Type the pokemon not deleted",
                 "messageLog"=> $e->getMessage(),
                 "code" => 0
-            ], 500);
-        }
-    }
-
-    public function search(Request $request){
-        try{
-            $type = Type::where('id', $request->id)->get();
-            if($type){
-                return response()->json([
-                    "status"=> 200,
-                    "message"=> "Abilities the pokemon found",
-                    "data"=> $type
-                ], 200);
-            }
-        }catch(Exception $e){
-            return response()->json([
-                "status"=> 500,
-                "message"=> "Abilities the pokemon not found",
-                "messageLog"=> $e->getMessage()
             ], 500);
         }
     }

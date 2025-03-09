@@ -38,7 +38,8 @@ class pokemonController extends Controller
                 return response()->json([
                     "status"=> 200,
                     "message"=> "Pokemon created successfully",
-                    "code" => 1
+                    "code" => 1,
+                    "data"=> $pokemon
                 ], 200);
             }else{
                 return response()->json([

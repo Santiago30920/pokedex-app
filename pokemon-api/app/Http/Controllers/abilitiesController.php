@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Abilities;
+use Exception;
 
 class abilitiesController extends Controller
 {
@@ -27,14 +28,15 @@ class abilitiesController extends Controller
     public function save(Request $request)
     {
         try{
-            $types = new Type();
-            $types->name = $request->name;
-            $types->description = $request->description;
-            $types->save();
+            $abilities = new Abilities();
+            $abilities->name = $request->name;
+            $abilities->description = $request->description;
+            $abilities->save();
             return response()->json([
                 "status"=> 200,
                 "message"=> "Type the pokemon created successfully",
-                "code" => 1
+                "code" => 1,
+                "data"=> $abilities
             ], 200);
         }catch(Exception $e){
             return response()->json([
@@ -93,25 +95,6 @@ class abilitiesController extends Controller
                 "message"=> "Abilities the pokemon not deleted",
                 "messageLog"=> $e->getMessage(),
                 "code" => 0
-            ], 500);
-        }
-    }
-
-    public function search(Request $request){
-        try{
-            $abilities = Abilities::where('id', $request->id)->get();
-            if($abilities){
-                return response()->json([
-                    "status"=> 200,
-                    "message"=> "Abilities the pokemon found",
-                    "data"=> $abilities
-                ], 200);
-            }
-        }catch(Exception $e){
-            return response()->json([
-                "status"=> 500,
-                "message"=> "Abilities the pokemon not found",
-                "messageLog"=> $e->getMessage()
             ], 500);
         }
     }
