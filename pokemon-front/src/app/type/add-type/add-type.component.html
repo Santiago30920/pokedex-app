@@ -1,0 +1,14 @@
+<h2 mat-dialog-title>Registrar tipo</h2>
+<mat-dialog-content class="mat-typography">
+    <div class="contenido">
+        <mat-form-field class="example-form-field">
+            <mat-label>Nombres</mat-label>
+            <input matInput type="text" [(ngModel)]="type.name">
+        </mat-form-field>
+
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+    <button mat-button class="save" cdkFocusInitial (click)="confirmar()">Guardar</button>
+    <button mat-button mat-dialog-close class="cancel">Cancelar</button>
+</mat-dialog-actions>

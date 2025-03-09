@@ -1,0 +1,60 @@
+
+<div class="container">
+    <h2 style="text-align: center;"> Pokemones </h2>
+    <div class="agregar">
+        <button mat-mini-fab class="add" (click)="addUser()">
+            <mat-icon>add</mat-icon>
+        </button>
+        <mat-form-field class="search">
+            <mat-label>Buscar</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Consultar pokemon" #input>
+        </mat-form-field>
+    </div>
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource">
+    
+            <!-- Position Column -->
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="sprite_url">
+                <th mat-header-cell *matHeaderCellDef> Pokemon </th>
+                <td mat-cell *matCellDef="let poke" (click)="openInformation(poke)"> 
+                    <img src="{{poke.sprite_url}}" alt="" class="imgPokemon"> 
+                </td>
+            </ng-container>
+    
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                <td mat-cell *matCellDef="let poke" (click)="openInformation(poke)"> {{poke.name}} </td>
+            </ng-container>
+    
+            <!-- Weight Column -->
+            <ng-container matColumnDef="type">
+                <th mat-header-cell *matHeaderCellDef> Tipo </th>
+                <td mat-cell *matCellDef="let poke" (click)="openInformation(poke)"> {{poke.types}} </td>
+            </ng-container>
+    
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="abilities">
+                <th mat-header-cell *matHeaderCellDef> Habilidades </th>
+                <td mat-cell *matCellDef="let poke" (click)="openInformation(poke)"> {{poke.abilities}} </td>
+            </ng-container>
+    
+            <!-- action Column -->
+            <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Editar </th>
+                <td mat-cell *matCellDef="let poke">
+                    <button class="buttonEdit" (click)="openDialogEditar(poke)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+    
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
+        </mat-paginator>
+    </div>
+</div>

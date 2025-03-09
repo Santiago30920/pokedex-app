@@ -1,0 +1,51 @@
+@if(this.pokemon.operation === 5){
+<h2 mat-dialog-title>{{pokemon.name}}</h2>
+<mat-dialog-content class="mat-typography">
+  <div class="card">
+    <img src="{{pokemon.sprite_url}}" alt="">
+    <p>Tipos: {{pokemon.types}}</p>
+    <p>Habilidades: {{pokemon.abilities}}</p>
+  </div>
+</mat-dialog-content>
+}@else {
+<h2 mat-dialog-title>Registar Pokemones</h2>
+<mat-dialog-content class="mat-typography">
+  <div class="contenido">
+    <mat-form-field class="example-form-field">
+      <mat-label>Nombres</mat-label>
+      <input matInput type="text" [(ngModel)]="pokemon.name">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Tipos</mat-label>
+      <mat-select [(ngModel)]="pokemon.types" multiple>
+        @for (type of types; track type) {
+        <mat-option [value]="type.name">{{type.name}}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Habilidad</mat-label>
+      <mat-select [(ngModel)]="pokemon.abilities" multiple>
+        @for (abilitie of abilities; track abilitie) {
+        <mat-option [value]="abilitie.name">{{abilitie.name}}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="example-form-field">
+      <mat-label>Imagen URL</mat-label>
+      <input matInput type="text" [(ngModel)]="pokemon.sprite_url">
+    </mat-form-field>
+  </div>
+</mat-dialog-content>
+}
+@if(this.pokemon.operation === 5){
+
+<mat-dialog-actions align="center">
+  <button mat-button mat-dialog-close>Cerrar</button>
+</mat-dialog-actions>
+}@else {
+<mat-dialog-actions align="center">
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button mat-button (click)="save()" cdkFocusInitial>Guardar</button>
+</mat-dialog-actions>
+}

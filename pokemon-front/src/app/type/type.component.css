@@ -1,0 +1,52 @@
+.container {
+    padding: 20px;
+    background-color: rgb(25, 43, 143);
+    color: white;
+    border: 20px solid gray;
+    border-radius: 20px;
+    -webkit-box-shadow: 10px 10px 36px -8px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 36px -8px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 10px 36px -8px rgba(0, 0, 0, 0.75);
+    width: 80%;
+    margin: 35px auto;
+
+    .imgPokemon {
+        width: 45px;
+    }
+
+    .agregar {
+        width: 100%;
+        display: flex;
+
+        .add {
+            margin-top: 10px;
+        }
+
+        .search {
+            margin-left: 15px;
+            width: 100%;
+        }
+    }
+
+    .buttonEdit {
+        background-color: #4CAF50;
+        color: white;
+        padding: 5px 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border: none;
+    }
+
+    .buttonEdit:hover {
+        background-color: #45a049;
+    }
+}
+
+td,
+th {
+    width: 25%;
+}
