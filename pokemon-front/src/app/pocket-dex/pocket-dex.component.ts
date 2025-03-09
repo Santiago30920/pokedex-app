@@ -66,7 +66,6 @@ export class PocketDexComponent implements OnInit {
       data: pokemon,
       backdropClass: 'backdropBackground',
       panelClass: 'custom-modalbox',
-      disableClose: true,
     });
     ref.afterClosed().subscribe((result: PokemonDTO) => {
       if (result) {
@@ -85,7 +84,6 @@ export class PocketDexComponent implements OnInit {
       width: '600px',
       backdropClass: 'backdropBackground',
       panelClass: 'custom-modalbox',
-      disableClose: true
     });
   }
 
@@ -98,7 +96,6 @@ export class PocketDexComponent implements OnInit {
       data: poke,
       backdropClass: 'backdropBackground',
       panelClass: 'custom-modalbox',
-      disableClose: true
     });
     ref.afterClosed().subscribe((poke: PokemonDTO) => {
       if (poke) {

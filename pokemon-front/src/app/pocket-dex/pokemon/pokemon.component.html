@@ -41,11 +41,11 @@
 @if(this.pokemon.operation === 5){
 
 <mat-dialog-actions align="center">
-  <button mat-button mat-dialog-close>Cerrar</button>
+  <button mat-button mat-dialog-close class="cerrar">Cerrar</button>
 </mat-dialog-actions>
 }@else {
 <mat-dialog-actions align="center">
-  <button mat-button mat-dialog-close>Cancelar</button>
+  <button mat-button mat-dialog-close class="cancelar">Cancelar</button>
   <button mat-button (click)="save()" cdkFocusInitial>Guardar</button>
 </mat-dialog-actions>
 }
