@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('pokemon', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->string('name');
-            $table->string('type');
+            $table->string('types');
             $table->string('abalities');
             $table->string('sprite_url');
         });
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('pokemon');
     }
 };
