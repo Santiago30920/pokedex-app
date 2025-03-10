@@ -27,7 +27,7 @@ RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
 # Exponer el puerto 9000 (usado por PHP-FPM)
 EXPOSE $PORT
 
-CMD php artisan serve --host=0.0.0.0 --port=${PORT:-8000}
-
 # Comando por defecto
 CMD ["php-fpm"]
+
+CMD php artisan serve --host=0.0.0.0 --port=${PORT:-8000}
