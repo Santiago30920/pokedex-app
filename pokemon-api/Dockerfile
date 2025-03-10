@@ -24,8 +24,6 @@ RUN composer install --no-dev --optimize-autoloader
 RUN chmod -R 775 storage bootstrap/cache && \
     chown -R www-data:www-data storage bootstrap/cache
 
-# Copiar archivo de entorno y generar clave (si no lo maneja Render)
-COPY .env.example .env
 RUN php artisan key:generate
 
 # Exponer el puerto (Render lo usará automáticamente)
