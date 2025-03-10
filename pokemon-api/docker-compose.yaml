@@ -37,7 +37,7 @@ services:
       context: ./
       dockerfile: Dockerfile
     ports:
-      - "$PORT:$PORT"
+      - "8080:8000"
     volumes:
       - ./:/var/www/html
     depends_on:
@@ -48,11 +48,11 @@ services:
           - laravel.local
     environment:
       DB_CONNECTION: pgsql
-      DB_HOST: postgres.local
+      DB_HOST: dpg-cv7hd41c1ekc738p36sg-a.oregon-postgres.render.com
       DB_PORT: 5432
-      DB_DATABASE: pocketDeck
-      DB_USERNAME: postgres
-      DB_PASSWORD: Password12345
+      DB_DATABASE: pocketdeck_lwcv
+      DB_USERNAME: postgress
+      DB_PASSWORD: jdM1t043VuFaJQZ8kxdgBMMTzPISBLHd
       APP_KEY: base64:your_app_key
     command: php artisan serve --host=0.0.0.0 --port=8000
     links:

@@ -25,8 +25,7 @@ RUN composer install --no-dev --optimize-autoloader
 RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
 
 # Exponer el puerto 9000 (usado por PHP-FPM)
-EXPOSE $PORT
+EXPOSE 9000
 
 # Comando por defecto
-
-CMD php artisan serve --host=0.0.0.0 --port=${PORT:-8000}
+CMD ["php-fpm"]
