@@ -30,5 +30,3 @@ EXPOSE $PORT
 # Comando por defecto
 
 CMD php artisan serve --host=0.0.0.0 --port=${PORT:-8000}
-
-RUN php artisan migrate
