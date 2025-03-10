@@ -1,0 +1,35 @@
+# Ignorar la carpeta de dependencias de Composer
+/vendor
+
+# Ignorar archivos de entorno y credenciales sensibles
+.env
+
+# Ignorar archivos de caché y logs
+/node_modules
+/bootstrap/cache/*
+/storage/logs/*
+/storage/framework/cache/*
+/storage/framework/sessions/*
+/storage/framework/views/*
+
+# Ignorar archivos de compilación y configuraciones de IDE
+.DS_Store
+*.log
+*.sql
+*.sqlite
+.idea
+.vscode
+.phpunit.result.cache
+
+# Ignorar archivos de pruebas locales
+/tests
+/public/storage
+/public/hot
+/public/mix-manifest.json
+/public/js/*.map
+/public/css/*.map
+
+# Ignorar archivos de control de versiones y configuración local
+.git
+.gitignore
+docker-compose.override.yml
