@@ -19,7 +19,7 @@ WORKDIR /var/www
 COPY . .
 
 # Instalar dependencias de Laravel
-RUN cd pokemon-api && composer install --no-dev --optimize-autoloader
+RUN composer install --no-dev --optimize-autoloader
 
 # Ajustar permisos
 RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
