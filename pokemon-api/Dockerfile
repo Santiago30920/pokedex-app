@@ -11,11 +11,11 @@ RUN apt-get update && apt-get install -y \
 # Instalar Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Definir el directorio de trabajo
-WORKDIR /var/www
-
 # Copiar archivos de Laravel
 COPY . .
+
+# Verificar si composer.json está en el contenedor
+RUN ls -la /var/www
 
 # Instalar dependencias de Laravel
 RUN composer install --no-dev --optimize-autoloader
