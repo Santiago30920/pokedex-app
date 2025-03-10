@@ -48,7 +48,7 @@ services:
           - laravel.local
     environment:
       DB_CONNECTION: pgsql
-      DB_HOST: dpg-cv7hd41c1ekc738p36sg-a.oregon-postgres.render.com
+      DB_HOST: postgresql://dpg-cv7hd41c1ekc738p36sg-a
       DB_PORT: 5432
       DB_DATABASE: pocketdeck_lwcv
       DB_USERNAME: postgress
