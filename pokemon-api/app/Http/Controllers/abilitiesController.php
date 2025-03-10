@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Abilities;
+use App\Models\abilities;
 use Exception;
 
 class abilitiesController extends Controller
@@ -13,7 +13,7 @@ class abilitiesController extends Controller
      */
     public function index()
     {
-        $abilities = Abilities::all();
+        $abilities = abilities::all();
         return response()->json([
             "status"=> 200,
             "message"=> "Abilities the pokemons list",
@@ -28,7 +28,7 @@ class abilitiesController extends Controller
     public function save(Request $request)
     {
         try{
-            $abilities = new Abilities();
+            $abilities = new abilities();
             $abilities->name = $request->name;
             $abilities->description = $request->description;
             $abilities->save();
@@ -54,7 +54,7 @@ class abilitiesController extends Controller
     public function update(Request $request, string $id)
     {
         try{
-            $response = Abilities::where('id', $id)->update([
+            $response = abilities::where('id', $id)->update([
                 'name' => $request->name,
                 'description' => json_encode($request->description)
             ]);
@@ -81,7 +81,7 @@ class abilitiesController extends Controller
     public function destroy(string $id)
     {
         try{
-            $response = Abilities::where('id', $id)->delete();
+            $response = abilities::where('id', $id)->delete();
             if($response){
                 return response()->json([
                     "status"=> 200,

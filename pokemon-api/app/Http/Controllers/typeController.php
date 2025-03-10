@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Type;
+use App\Models\type;
 use Exception;
 
 class typeController extends Controller
@@ -13,7 +13,7 @@ class typeController extends Controller
      */
     public function index()
     {
-        $types = Type::all();
+        $types = type::all();
         return response()->json([
             "status"=> 200,
             "message"=> "Type the pokemons list",
@@ -28,7 +28,7 @@ class typeController extends Controller
     public function save(Request $request)
     {
         try{
-            $types = new Type();
+            $types = new type();
             $types->name = $request->name;
             $types->save();
             return response()->json([
@@ -53,7 +53,7 @@ class typeController extends Controller
     public function update(Request $request, string $id)
     {
         try{
-            $response = Type::where('id', $id)->update([
+            $response = type::where('id', $id)->update([
                 'name' => $request->name,
             ]);
             if($response){
@@ -79,7 +79,7 @@ class typeController extends Controller
     public function destroy(string $id)
     {
         try{
-            $response = Type::where('id', $id)->delete();
+            $response = type::where('id', $id)->delete();
             if($response){
                 return response()->json([
                     "status"=> 200,
