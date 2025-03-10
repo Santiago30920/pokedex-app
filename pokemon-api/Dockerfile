@@ -18,6 +18,8 @@ WORKDIR /var/www
 # Copiar archivos de Laravel
 COPY . .
 
+RUN composer --version
+
 # Instalar dependencias de Laravel
 RUN composer install --no-dev --optimize-autoloader
 
