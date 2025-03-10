@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id()->autoIncrement();
             $table->string('name');
             $table->string('types');
-            $table->string('abalities');
+            $table->string('abilities');
             $table->string('sprite_url');
         });
     }

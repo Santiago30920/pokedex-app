@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Pokemon;
+use App\Models\pokemon;
 use Exception;
 
 class pokemonController extends Controller
@@ -13,7 +13,7 @@ class pokemonController extends Controller
      */
     public function index()
     {
-        $pokemons = Pokemon::all();
+        $pokemons = pokemon::all();
         return response()->json([
             "status"=> 200,
             "message"=> "Pokemons list",
@@ -28,7 +28,7 @@ class pokemonController extends Controller
     public function save(Request $request)
     {
         try{
-            $pokemon = new Pokemon();
+            $pokemon = new pokemon();
             if($request->name && $request->types && $request->abilities && $request->sprite_url){
                 $pokemon->name = $request->name;
                 $pokemon->types =  json_encode($request->types);
@@ -107,7 +107,7 @@ class pokemonController extends Controller
     public function destroy(string $id)
     {
         try{
-            $response = Pokemon::where('id', '=', $id)->delete();
+            $response = pokemon::where('id', '=', $id)->delete();
             if($response == 1){
                 return response()->json([
                     "status"=> 200,
@@ -134,7 +134,7 @@ class pokemonController extends Controller
     public function search(string $name)
     {
         try {
-            $pokemon = Pokemon::where('name', '=', $name)->first();
+            $pokemon = pokemon::where('name', '=', $name)->first();
     
             if ($pokemon) {
                 return response()->json([

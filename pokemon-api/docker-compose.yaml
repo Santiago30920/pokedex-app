@@ -1,0 +1,59 @@
+version: '4'
+
+networks:
+  canto_network:
+    name: canto_net
+    driver: bridge
+    ipam:
+      driver: default
+
+volumes:
+  postgres-data:
+    driver: local
+
+services:
+  db-postgres:
+  
+    image: postgres:latest
+    container_name: db-postgres
+    networks:
+      canto_network:
+        aliases:
+          - postgres.local
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: pocketDeck
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Password12345
+  
+  laravel:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8000"
+    volumes:
+      - ./:/var/www/html
+    depends_on:
+      - db-postgres
+    networks:
+      canto_network:
+        aliases:
+          - laravel.local
+    environment:
+      DB_CONNECTION: pgsql
+      DB_HOST: postgres.local
+      DB_PORT: 5432
+      DB_DATABASE: pocketDeck
+      DB_USERNAME: postgres
+      DB_PASSWORD: Password12345
+      APP_KEY: base64:your_app_key
+    command: php artisan serve --host=0.0.0.0 --port=8000
+    links:
+      - db-postgres
