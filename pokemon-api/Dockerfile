@@ -1,7 +1,6 @@
-# Usar PHP-FPM 8.2 como base
 FROM php:8.2-fpm
 
-# Instalar dependencias del sistema
+# Instalar dependencias
 RUN apt-get update && apt-get install -y \
     git \
     unzip \
@@ -11,27 +10,20 @@ RUN apt-get update && apt-get install -y \
 # Instalar Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Definir el directorio de trabajo
+# Configurar el directorio de trabajo
 WORKDIR /var/www
 
-# Copiar archivos clave primero para aprovechar la caché de Docker
-COPY composer.json composer.lock ./
+# Copiar archivos de Laravel
+COPY . .
 
 # Instalar dependencias de Laravel
 RUN composer install --no-dev --optimize-autoloader
 
-# Copiar el resto de archivos del proyecto
-COPY . .
+# Ajustar permisos
+RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
 
-# Ajustar permisos para almacenamiento y caché
-RUN chmod -R 775 storage bootstrap/cache && \
-    chown -R www-data:www-data storage bootstrap/cache
-
-# Generar clave de aplicación
-RUN php artisan key:generate
-
-# Exponer el puerto
+# Exponer el puerto 9000 (usado por PHP-FPM)
 EXPOSE 9000
 
-# Comando de inicio
-CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=9000"]
+# Comando por defecto
+CMD ["php-fpm"]
