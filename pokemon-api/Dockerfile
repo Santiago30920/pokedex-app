@@ -11,23 +11,27 @@ RUN apt-get update && apt-get install -y \
 # Instalar Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Copiar archivos de Laravel
-COPY . .
+# Definir el directorio de trabajo
+WORKDIR /var/www
 
-# Verificar si composer.json está en el contenedor
-RUN ls -la /var/www
+# Copiar archivos clave primero para aprovechar la caché de Docker
+COPY composer.json composer.lock ./
 
 # Instalar dependencias de Laravel
 RUN composer install --no-dev --optimize-autoloader
+
+# Copiar el resto de archivos del proyecto
+COPY . .
 
 # Ajustar permisos para almacenamiento y caché
 RUN chmod -R 775 storage bootstrap/cache && \
     chown -R www-data:www-data storage bootstrap/cache
 
+# Generar clave de aplicación
 RUN php artisan key:generate
 
-# Exponer el puerto (Render lo usará automáticamente)
+# Exponer el puerto
 EXPOSE 9000
 
-# Comando de inicio (Laravel con PHP-FPM)
+# Comando de inicio
 CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=9000"]
